@@ -44,6 +44,7 @@ $(document).ready(function() {
 		    		getStartingLoopIndex();
 					i = startingLoopIndex;
 			        startloop();
+			        open_popup("pal.html");
 			     
 	    });
 	}
@@ -77,7 +78,7 @@ $(document).ready(function() {
 		
 		//this is the loop that starts everything off. it first starts with changing the bpm and then calls the funtion to change the pulsing and background color
 		function loop() {
-			if( i == startingLoopIndex){
+			if( i <= startingLoopIndex){
 				timeloop = 0;
 				var daysfromJsonstart = diffJsonDate(item[0][0]);
 				var nextitemdatetime = item[i+1][0];
@@ -85,8 +86,7 @@ $(document).ready(function() {
 				var now  = moment().format("DD/MM/YYYY HH:mm:ss");
 				var then = moment.utc(nextitemdatetime).format("DD/MM/YYYY HH:mm:ss");
 				var nextloop = moment(then,"DD/MM/YYYY HH:mm:ss").diff(moment(now,"DD/MM/YYYY HH:mm:ss"));
-				
-				//console.log(nextloop);
+				console.log(nextloop);
 			}
 			else{
 				var daysfromJsonstart = diffJsonDate(item[0][0]);
@@ -111,22 +111,20 @@ $(document).ready(function() {
 
 	function runitemloop() {
 		if(debug==0){
-			//window.frames['webhistory'].location = item[i][4];
-			try{
-				$('iframe').attr('src',item[i][4]);
-			}catch(err){
-				$('iframe').attr('src','about:blank');
-				$("#itemdiv").empty();
-				$("#itemdiv").append(
-					"<h1>" +
-					moment.utc(item[i][0]).format("DD/MM/YYYY HH:mm:ss") + "<br>" +			// date
-					item[i][1] + "<br>" +  		// itemvalue
-					item[i][2] + "<br>" + 
-					item[i][3] + "<br>" + 
-					item[i][4] 
-					+ "</h1>"
-				)
-			}
+			window_handle.location.replace(item[i][4]);
+			$("#itemdiv").empty();
+			$("#itemdiv").append(
+				"<h1>" +
+				moment.utc(item[i][0]).format("DD/MM/YYYY HH:mm:ss") + "<br>" +			// date
+				item[i][1] + "<br>" +  		// itemvalue
+				item[i][2] + "<br>" + 
+				item[i][3] + "<br>" + 
+				item[i][4] + "<br>" + 
+				timeloop + "<br>" +  
+				nextloop 
+				+ "</h1>"
+				
+			)
 		}else{
 			$("#itemdiv").empty();
 			$("#itemdiv").append(
@@ -144,6 +142,12 @@ $(document).ready(function() {
 
 		}
 	};
+
+	function open_popup(page) {
+	    window_handle = window.open(page,'webhistorywindow');
+	    window_handle.focus();
+	    return false;
+	}
 
 	
 	initiateDataRequest();

@@ -75,7 +75,7 @@ $(document).ready(function() {
 		
 		//this is the loop that starts everything off. it first starts with changing the bpm and then calls the funtion to change the pulsing and background color
 		function loop() {
-			if( i == startingLoopIndex){
+			if( i <= startingLoopIndex){
 				timeloop = 0;
 				var daysfromJsonstart = diffJsonDate(item[0][0]);
 				var nextitemdatetime = item[i+1][0];
