@@ -1,0 +1,23 @@
+body {
+    	background-color: #000000;
+    }
+    .fullscreenDiv {
+      
+      width: 100%;
+      height: auto;
+      bottom: 0px;
+      top: 0px;
+      left: 0;
+      position: absolute;
+  }
+  .centered {
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
+
+  h1{
+    color: white;
+  }
