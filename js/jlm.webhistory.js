@@ -88,9 +88,8 @@ $(document).ready(function() {
 					var d = moment.duration(nextloop, 'milliseconds');
 					var hours = Math.floor(d.asHours());
 					var mins = Math.floor(d.asMinutes()) - hours * 60;
-					var secs = Math.floor(d.asSeconds()) - mins * 60;
+					var secs = Math.floor(d.asSeconds()) - ((hours * 3600) + (mins * 60));
 					nextloop = hours + ":" + mins + ":" + secs;
-					console.log('wtf');
 				}
 			}else{
 				var daysfromJsonstart = diffJsonDate(item[0][0]);
@@ -104,7 +103,7 @@ $(document).ready(function() {
 					var d = moment.duration(nextloop, 'milliseconds');
 					var hours = Math.floor(d.asHours());
 					var mins = Math.floor(d.asMinutes()) - hours * 60;
-					var secs = Math.floor(d.asSeconds()) - mins * 60;
+					var secs = Math.floor(d.asSeconds()) - ((hours * 3600) + (mins * 60));
 					nextloop = hours + ":" + mins + ":" + secs;
 				}
 			}
@@ -114,9 +113,8 @@ $(document).ready(function() {
 	            i++;
 	            loop();
 		    }, timeloop);
-
-			loop();
 		}
+		loop();
 	}
 
 	function runitemloop() {
@@ -134,6 +132,7 @@ $(document).ready(function() {
 				
 			)
 		}else{
+			window_handle.location.replace(item[i][4]);
 			$("#itemdiv").empty();
 			$("#itemdiv").append(
 				"<h1>" +

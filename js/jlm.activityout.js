@@ -87,10 +87,9 @@ $(document).ready(function() {
 					nextloop = moment(then,"DD/MM/YYYY HH:mm:ss").diff(moment(now,"DD/MM/YYYY HH:mm:ss"));
 					var d = moment.duration(nextloop, 'milliseconds');
 					var hours = Math.floor(d.asHours());
-					var mins = Math.floor(d.asMinutes()) - hours * 60;
-					var secs = Math.floor(d.asSeconds()) - mins * 60;
+					var mins = Math.floor(d.asMinutes()) - ((hours * 60));
+					var secs = Math.floor(d.asSeconds()) - ((hours * 3600) + (mins * 60));
 					nextloop = hours + ":" + mins + ":" + secs;
-					console.log('wtf');
 				}
 			}else{
 				var daysfromJsonstart = diffJsonDate(item[0][0]);
@@ -104,7 +103,7 @@ $(document).ready(function() {
 					var d = moment.duration(nextloop, 'milliseconds');
 					var hours = Math.floor(d.asHours());
 					var mins = Math.floor(d.asMinutes()) - hours * 60;
-					var secs = Math.floor(d.asSeconds()) - mins * 60;
+					var secs = Math.floor(d.asSeconds()) - ((hours * 3600) + (mins * 60));
 					nextloop = hours + ":" + mins + ":" + secs;
 				}
 			}
@@ -114,17 +113,14 @@ $(document).ready(function() {
 	            i++;
 	            loop();
 		    }, timeloop);
-
-			loop();
 		}
+		loop();
 	}
 
 	function runitemloop() {
 		if(debug==0){
 			$('body').css('background-image', "url(images/activityout/" + encodeURIComponent(item[i][1]) + ")");
 		}else{
-			console.log(i);
-			console.log(item[i][1]);
 			$("#itemdiv").empty();
 			//Screen%20Shot%202016-06-28%20at%2010.33.09%20PM.png
 			//Screen%20Shot%202016-06-28%20at%2010.33.09%20PM.png

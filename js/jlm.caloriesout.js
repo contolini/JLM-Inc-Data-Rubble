@@ -71,40 +71,47 @@ $(document).ready(function() {
 		//alert(itemdatetime);
 	}
 		
-	function startloop() { 
-		
-		//this is the loop that starts everything off. it first starts with changing the bpm and then calls the funtion to change the pulsing and background color
+	function startloop(){
 		function loop() {
 			if( i <= startingLoopIndex){
 				timeloop = 0;
+				if(debug != 0){
+					var daysfromJsonstart = diffJsonDate(item[0][0]);
+					var nextitemdatetime = item[i+1][0];
+					nextitemdatetime = moment.utc(nextitemdatetime).add(daysfromJsonstart, 'days');
+					var now  = moment().format("DD/MM/YYYY HH:mm:ss");
+					var then = moment.utc(nextitemdatetime).format("DD/MM/YYYY HH:mm:ss");
+					nextloop = moment(then,"DD/MM/YYYY HH:mm:ss").diff(moment(now,"DD/MM/YYYY HH:mm:ss"));
+					var d = moment.duration(nextloop, 'milliseconds');
+					var hours = Math.floor(d.asHours());
+					var mins = Math.floor(d.asMinutes()) - hours * 60;
+					var secs = Math.floor(d.asSeconds()) - ((hours * 3600) + (mins * 60));
+					nextloop = hours + ":" + mins + ":" + secs;
+				}
+			}else{
 				var daysfromJsonstart = diffJsonDate(item[0][0]);
 				var nextitemdatetime = item[i+1][0];
 				nextitemdatetime = moment.utc(nextitemdatetime).add(daysfromJsonstart, 'days');
 				var now  = moment().format("DD/MM/YYYY HH:mm:ss");
 				var then = moment.utc(nextitemdatetime).format("DD/MM/YYYY HH:mm:ss");
-				var nextloop = moment(then,"DD/MM/YYYY HH:mm:ss").diff(moment(now,"DD/MM/YYYY HH:mm:ss"));
-				
-				//console.log(nextloop);
-			}
-			else{
-				var daysfromJsonstart = diffJsonDate(item[0][0]);
-				var nextitemdatetime = item[i+1][0];
-				nextitemdatetime = moment.utc(nextitemdatetime).add(daysfromJsonstart, 'days');
-				var now  = moment().format("DD/MM/YYYY HH:mm:ss");
-				var then = moment.utc(nextitemdatetime).format("DD/MM/YYYY HH:mm:ss");
-				var timeloop = moment(then,"DD/MM/YYYY HH:mm:ss").diff(moment(now,"DD/MM/YYYY HH:mm:ss"));
-				console.log(timeloop);
+				timeloop = moment(then,"DD/MM/YYYY HH:mm:ss").diff(moment(now,"DD/MM/YYYY HH:mm:ss"));
+				if(debug != 0){
+					nextloop = timeloop;
+					var d = moment.duration(nextloop, 'milliseconds');
+					var hours = Math.floor(d.asHours());
+					var mins = Math.floor(d.asMinutes()) - hours * 60;
+					var secs = Math.floor(d.asSeconds()) - ((hours * 3600) + (mins * 60));
+					nextloop = hours + ":" + mins + ":" + secs;
+				}
 			}
 			clearTimeout(timer1);
-			
-	    	timer1 = setTimeout(function() {
+		    timer1 = setTimeout(function(){
 	            runitemloop();
 	            i++;
 	            loop();
 		    }, timeloop);
 		}
 		loop();
-		
 	}
 
 	function runitemloop() {
@@ -117,7 +124,6 @@ $(document).ready(function() {
 				"<h1>" +
 				moment.utc(item[i][0]).format("DD/MM/YYYY HH:mm:ss") + "<br>" +		// date
 				item[i][1] + "<br>" +  		// itemvalue
-				timeloop + "<br>" +  
 				nextloop
 				+ "</h1>"
 				
