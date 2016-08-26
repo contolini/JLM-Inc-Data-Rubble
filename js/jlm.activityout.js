@@ -85,26 +85,19 @@ $(document).ready(function() {
 					var now  = moment().format("DD/MM/YYYY HH:mm:ss");
 					var then = moment.utc(nextitemdatetime).format("DD/MM/YYYY HH:mm:ss");
 					nextloop = moment(then,"DD/MM/YYYY HH:mm:ss").diff(moment(now,"DD/MM/YYYY HH:mm:ss"));
-					var d = moment.duration(nextloop, 'milliseconds');
-					var hours = Math.floor(d.asHours());
-					var mins = Math.floor(d.asMinutes()) - ((hours * 60));
-					var secs = Math.floor(d.asSeconds()) - ((hours * 3600) + (mins * 60));
-					nextloop = hours + ":" + mins + ":" + secs;
+					nextloop = msToTime(nextloop);
 				}
 			}else{
 				var daysfromJsonstart = diffJsonDate(item[0][0]);
-				var nextitemdatetime = item[i+1][0];
+				var nextitemdatetime = item[i][0];
 				nextitemdatetime = moment.utc(nextitemdatetime).add(daysfromJsonstart, 'days');
 				var now  = moment().format("DD/MM/YYYY HH:mm:ss");
 				var then = moment.utc(nextitemdatetime).format("DD/MM/YYYY HH:mm:ss");
 				timeloop = moment(then,"DD/MM/YYYY HH:mm:ss").diff(moment(now,"DD/MM/YYYY HH:mm:ss"));
 				if(debug != 0){
 					nextloop = timeloop;
-					var d = moment.duration(nextloop, 'milliseconds');
-					var hours = Math.floor(d.asHours());
-					var mins = Math.floor(d.asMinutes()) - hours * 60;
-					var secs = Math.floor(d.asSeconds()) - ((hours * 3600) + (mins * 60));
-					nextloop = hours + ":" + mins + ":" + secs;
+					nextloop = msToTime(nextloop);
+					$("#itemdiv").append("<h1>" + nextloop + "</h1>");
 				}
 			}
 			clearTimeout(timer1);
