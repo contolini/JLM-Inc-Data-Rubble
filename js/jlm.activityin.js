@@ -112,18 +112,18 @@ $(document).ready(function() {
 
 	function runitemloop() {
 		if(debug==0){
-			$('body').css('background-image', "url(images/activityin/" + encodeURIComponent(item[i][1]) + ")");
+			$('body').css('background-image', "url(images/activityin/" + encodeURIComponent(item[i][1].toLowerCase()) + ")");
 		}else{
 			//console.log(i);
 			//console.log(item[i][1]);
 			$("#itemdiv").empty();
 			//Screen%20Shot%202016-06-28%20at%2010.33.09%20PM.png
 			//Screen%20Shot%202016-06-28%20at%2010.33.09%20PM.png
-			$('body').css('background-image', "url(images/activityin/" + encodeURIComponent(item[i][1]) + ")");
+			$('body').css('background-image', "url(images/activityin/" + encodeURIComponent(item[i][1].toLowerCase()) + ")");
 			$("#itemdiv").append(
 				"<h1>" +
 				moment.utc(item[i][0]).format("DD/MM/YYYY HH:mm:ss") + "<br>" +			// date
-				item[i][1] + "<br>" +  		// itemvalue
+				item[i][1].toLowerCase() + "<br>" +  		// itemvalue
 				nextloop
 				+ "</h1>"
 				

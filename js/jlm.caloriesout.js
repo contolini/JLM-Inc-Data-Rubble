@@ -94,8 +94,6 @@ $(document).ready(function() {
 				if(debug != 0){
 					nextloop = timeloop;
 					nextloop = msToTime(nextloop);
-					//console.log(msToTime(timeloop));
-					console.log(nextloop);
 					$("#itemdiv").append("<h1>" + nextloop + "</h1>");
 				}
 			}
