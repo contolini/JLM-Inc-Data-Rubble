@@ -121,7 +121,7 @@ $(document).ready(function() {
 			$("#itemdiv").append(
 				"<h1>" +
 				moment.utc(item[i][0]).format("DD/MM/YYYY HH:mm:ss") + "<br>" +			// date
-				item[i][1] + "<br>" +  		// itemvalue
+				item[i][1].toLowerCase() + "<br>" +  		// itemvalue
 				timeloop + "<br>" +  
 				nextloop
 				+ "</h1>"
