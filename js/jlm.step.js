@@ -110,8 +110,12 @@ $(document).ready(function() {
 	function runitemloop() {
 		if(item[i][1] == 0)
 			stepactivity = 'stationary';
-		else if(item[i][1] < 30)
+		else if(item[i][1] <= 30)
 			stepactivity = 'meandering';
+		else if(item[i][1] <= 60)
+			stepactivity = 'walking';
+		else if(item[i][1] <= 90)
+			stepactivity = 'walking fast';
 		else
 			stepactivity = 'on the move'
 		if(debug==0){
