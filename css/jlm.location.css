@@ -3,6 +3,11 @@ body {
     overflow: hidden;
 }
 
+.centered {
+    position: inherit;
+    transform: inherit;
+}
+
 #google-map {
     position: absolute;
     border: 0;

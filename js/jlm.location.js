@@ -115,11 +115,7 @@ $(document).ready(function() {
 	function runitemloop() {
 		if(debug==0){
 			$("#itemdiv").empty();
-<<<<<<< HEAD
-			$("body").html('<iframe id="google-map" width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDHcm1d3DWhoqTfJspst1Vr5SiUn8OODg4&center='+item[i][1]+','+item[i][2]+'&zoom=18&maptype=satellite" allowfullscreen> </iframe>');
-=======
-			$("html").attr("style", "background:url(https://maps.googleapis.com/maps/api/streetview?size=1000x1000&location="+item[i][1]+","+item[i][2]+"&key=AIzaSyBsLHVg1s9BFRQgT6djBRn6aA5lg6zwaP4) no-repeat center center fixed;background-size:cover;")
->>>>>>> e2e19ddac47b4c9863b31e4b332a734d316b69e9
+			$("#itemdiv").html('<iframe id="google-map" width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDHcm1d3DWhoqTfJspst1Vr5SiUn8OODg4&center='+item[i][1]+','+item[i][2]+'&zoom=18&maptype=satellite" allowfullscreen> </iframe>');
 		}else{
 			$("#itemdiv").empty();
 			$("#itemdiv").append(
