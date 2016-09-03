@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#google-map {
+    position: absolute;
+    border: 0;
+    transform: scale(1.15);
+}

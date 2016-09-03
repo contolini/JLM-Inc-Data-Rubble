@@ -115,7 +115,7 @@ $(document).ready(function() {
 	function runitemloop() {
 		if(debug==0){
 			$("#itemdiv").empty();
-			$("#itemdiv").append("<h1>Lat: " + item[i][1] + "<br>Lng: " + item[i][2] + "</h1>");
+			$("body").html('<iframe id="google-map" width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDHcm1d3DWhoqTfJspst1Vr5SiUn8OODg4&center='+item[i][1]+','+item[i][2]+'&zoom=18&maptype=satellite" allowfullscreen> </iframe>');
 		}else{
 			$("#itemdiv").empty();
 			$("#itemdiv").append(
