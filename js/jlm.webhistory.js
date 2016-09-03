@@ -133,7 +133,7 @@ $(document).ready(function() {
 				item[i][1] + "<br>" +  		// itemvalue
 				item[i][2] + "<br>" + 
 				item[i][3] + "<br>" + 
-				item[i][4] + "<br>" + 
+				item[i][4].replace(/(.{25})/g, "$1<br>") + "<br>" + 
 				nextloop
 				+ "</h1>"
 				

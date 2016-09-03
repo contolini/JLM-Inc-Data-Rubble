@@ -1,4 +1,4 @@
-var startdate = new Date('08/20/2016');
+var startdate = new Date('08/03/2016');
 var startoverdays = 30;
 var debug = getParameterByName('debug');
 if(debug == null)
